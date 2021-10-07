@@ -1,4 +1,5 @@
 # magic_square
+```
 def is_magic_square(magic_square):
     """
         Check if matrix is a magic square
@@ -54,10 +55,13 @@ def generate(order,starting_number=1,increment=1,number_of_shuffles=0):
                                None => shuffled random number of times
     @return magic square
     """
+```
 ## Example
+```
     order  = 6
     starting_number = 2
     increment = 2
     ending_number = _ending_number(order, starting_number, increment)
     number_of_shuffles = 0
     magic_square,magic_const = generate(order,starting_number,increment,number_of_shuffles)
+```
