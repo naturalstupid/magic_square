@@ -56,6 +56,15 @@ def generate(order,starting_number=1,increment=1,number_of_shuffles=0):
     @return magic square
     """
 ```
+```
+def generate_for_given_sum_and_order(sum,order=3):
+    """
+    Generate a magiv square closest to given order and sum
+    @param sum:     sum of the to-be generated magic square
+    @param order:   order of the to-be generated magic square
+    @return    closes possible magic square
+    """
+```
 ## Example
 ```
     order  = 6

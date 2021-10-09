@@ -246,6 +246,12 @@ def _magic_minimize_brute(x:int,sum,n):
     error = abs(sum-n*(2*x[0]+(n*n-1)*x[1])//2)
     return error    
 def generate_for_given_sum_and_order(sum,order=3):
+    """
+    Generate a magiv square closest to given order and sum
+    @param sum:     sum of the to-be generated magic square
+    @param order:   order of the to-be generated magic square
+    @return    closes possible magic square
+    """
     magic_square=[]
     min_sum = magic_sum(order,1,1)
     if sum < min_sum: #sum % order !=0 or 
