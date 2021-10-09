@@ -1,3 +1,4 @@
+from scipy.optimize import brute
 import random
 from sys import stdout
 import numpy as np
@@ -241,17 +242,43 @@ def multiples_of_four_new(order,starting_number=1,increment=1,number_of_shuffles
             magic_square[i][j] = cms-c if i%4 == j%4 or (i+j)%4 == (order-1)%4 else c
             c += increment
     print(magic_square)
+def _magic_minimize_brute(x:int,sum,n):
+    error = abs(sum-n*(2*x[0]+(n*n-1)*x[1])//2)
+    return error    
+def generate_for_given_sum_and_order(sum,order=3):
+    magic_square=[]
+    min_sum = magic_sum(order,1,1)
+    if sum < min_sum: #sum % order !=0 or 
+        print('Requested sum ',sum,'should be more than or equal to',min_sum,'for order',order,'in steps of',order)
+        sum = min_sum
+    ranges = (slice(1, 100, 1),) * 2
+    starting_number,increment = brute(_magic_minimize_brute,ranges, args=[sum,order], disp=True, finish=None)
+    magic_square,actual_sum = generate(order,starting_number,increment)
+    return magic_square,starting_number,increment,actual_sum
 if __name__ == "__main__":
+    order = 12
+    magic_const = 700
+    #import time
+    #start_time = time.process_time()
+    magic_square,starting_number,increment,actual_sum = generate_for_given_sum_and_order(magic_const,order)
+    #end_time=time.process_time()
+    #print("processing time",end_time-start_time,'seconds')
+    if actual_sum !=0:
+        print('magic square of order',order,' has sum',actual_sum,'with starting number,increment',(starting_number,increment),"\n",magic_square)
+    
+    exit()
     order  = 6
     starting_number = 2
     increment = 2
     ending_number = _ending_number(order, starting_number, increment)
     number_of_shuffles = 0
+    #import timeit
+    #print(timeit.timeit("generate(order,starting_number,increment,number_of_shuffles)", setup="from __main__ import generate,order,starting_number,increment,number_of_shuffles",number=1000))
     magic_square,magic_const = generate(order,starting_number,increment,number_of_shuffles)
-    
     print('magic square of order',order,' has sum',magic_const,'with ending number',ending_number,"\n",magic_square)
     print('is_magic_square',is_magic_square(magic_square))
-
+    #exit()
+    
     order  = 7
     starting_number = 3
     increment = 3
