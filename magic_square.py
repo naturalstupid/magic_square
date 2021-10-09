@@ -247,7 +247,7 @@ def _magic_minimize_brute(x:int,sum,n):
     return error    
 def generate_for_given_sum_and_order(sum,order=3):
     """
-    Generate a magiv square closest to given order and sum
+    Generate a magic square closest to given order and sum
     @param sum:     sum of the to-be generated magic square
     @param order:   order of the to-be generated magic square
     @return    closes possible magic square
